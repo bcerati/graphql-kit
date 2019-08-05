@@ -1,8 +1,8 @@
 <?php
 namespace Bcerati\GraphqlKit;
 
-use Bcerati\GraphqlKit\Mutation\MutationInterface;
-use Bcerati\GraphqlKit\Query\QueryInterface;
+use Bcerati\GraphqlKit\Mutation\Mutation;
+use Bcerati\GraphqlKit\Query\Query;
 use GraphQL\Type\Schema as BaseSchema;
 
 /**
@@ -12,19 +12,19 @@ use GraphQL\Type\Schema as BaseSchema;
  */
 class Schema extends BaseSchema
 {
-    /** @var QueryInterface */
+    /** @var Query */
     protected $query;
 
-    /** @var MutationInterface */
+    /** @var Mutation */
     protected $mutation;
 
     /**
      * Schema constructor.
-     * @param QueryInterface $query
      *
-     * @param MutationInterface $mutation
+     * @param Query $query
+     * @param Mutation $mutation
      */
-    public function __construct(QueryInterface $query, MutationInterface $mutation)
+    public function __construct(Query $query, Mutation $mutation)
     {
         $this->setQuery($query);
         $this->setMutation($mutation);
@@ -45,8 +45,8 @@ class Schema extends BaseSchema
         ];
     }
 
-    /** @return QueryInterface */
-    public function getQuery(): QueryInterface
+    /** @return Query */
+    public function getQuery(): Query
     {
         return $this->query;
     }
@@ -54,11 +54,11 @@ class Schema extends BaseSchema
     /**
      * Set the value of the property Query
      *
-     * @param QueryInterface $query
+     * @param Query $query
      *
      * @return Schema
      */
-    public function setQuery(QueryInterface $query): Schema
+    public function setQuery(Query $query): Schema
     {
         $this->query = $query;
 
@@ -68,9 +68,9 @@ class Schema extends BaseSchema
     /**
      * Get the value of the property Mutation
      *
-     * @return MutationInterface
+     * @return Mutation
      */
-    public function getMutation(): MutationInterface
+    public function getMutation(): Mutation
     {
         return $this->mutation;
     }
@@ -78,11 +78,11 @@ class Schema extends BaseSchema
     /**
      * Set the value of the property Mutation
      *
-     * @param MutationInterface $mutation
+     * @param Mutation $mutation
      *
      * @return Schema
      */
-    public function setMutation(MutationInterface $mutation): Schema
+    public function setMutation(Mutation $mutation): Schema
     {
         $this->mutation = $mutation;
 
