@@ -1,3 +1,4 @@
 graphql_api_endpoint:
     path: /api
     controller: Bcerati\GraphqlKit\Api\Server
+    methods: [POST]
