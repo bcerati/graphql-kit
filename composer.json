@@ -10,9 +10,13 @@
         }
     ],
     "require": {
+        "ext-json": "*",
         "webonyx/graphql-php": "^0.13.5",
         "symfony/http-foundation": "^4.3",
-        "symfony/routing": "^4.3"
+        "symfony/routing": "^4.3",
+        "symfony/http-kernel": "^4.3",
+        "symfony/config": "^4.3",
+        "symfony/dependency-injection": "^4.3"
     },
     "autoload": {
         "psr-4": {

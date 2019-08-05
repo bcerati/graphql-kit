@@ -3,7 +3,6 @@ namespace Bcerati\GraphqlKit\Definition;
 
 use Bcerati\GraphqlKit\Exception\TypeException;
 use Exception;
-use GraphQL\Language\AST\Node;
 use GraphQL\Type\Definition\ScalarType;
 
 /**
@@ -13,7 +12,10 @@ use GraphQL\Type\Definition\ScalarType;
  */
 class DatetimeType extends ScalarType
 {
-    /** @inheritdoc */
+    /**
+     * @inheritdoc
+     * @throws TypeException
+     */
     public function serialize($value)
     {
         if (!$value instanceof \DateTime) {
@@ -31,5 +33,11 @@ class DatetimeType extends ScalarType
     public function parseValue($value)
     {
         return new \DateTime($value);
+    }
+
+    /** @inheritDoc */
+    public function parseLiteral($valueNode, ?array $variables = null)
+    {
+        // TODO
     }
 }

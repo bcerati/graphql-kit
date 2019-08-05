@@ -1,0 +1,22 @@
+services:
+    Bcerati\GraphqlKit\Schema:
+        class: Bcerati\GraphqlKit\Schema
+        arguments:
+            - '@Bcerati\GraphqlKit\Query\Query'
+            - '@Bcerati\GraphqlKit\Mutation\Mutation'
+
+    Bcerati\GraphqlKit\Api\Server:
+        class: Bcerati\GraphqlKit\Api\Server
+        tags: ['controller.service_arguments']
+
+    Bcerati\GraphqlKit\Query\Query:
+        class: Bcerati\GraphqlKit\Query\Query
+
+    Bcerati\GraphqlKit\Mutation\Mutation:
+        class: Bcerati\GraphqlKit\Mutation\Mutation
+
+    Bcerati\GraphqlKit\Query\QueryInterface:
+        class: Bcerati\GraphqlKit\Query\Query
+
+    Bcerati\GraphqlKit\Mutation\MutationInterface:
+        class: Bcerati\GraphqlKit\Mutation\Mutation

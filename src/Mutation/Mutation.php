@@ -1,8 +1,8 @@
 <?php
 namespace Bcerati\GraphqlKit\Mutation;
 
-use Bcerati\GraphqlKit\Entry\EntryInterface;
-use Bcerati\GraphqlKit\Entry\EntryTrait;
+use Bcerati\GraphqlKit\EndPoint\EndPointInterface;
+use Bcerati\GraphqlKit\EndPoint\EndPointTrait;
 use GraphQL\Type\Definition\ObjectType;
 
 /**
@@ -10,18 +10,18 @@ use GraphQL\Type\Definition\ObjectType;
  *
  * @package Bcerati\GraphqlKit\Mutation
  */
-class Mutation extends ObjectType implements MutationInterface
+class Mutation extends ObjectType
 {
-    use EntryTrait;
+    use EndPointTrait;
 
     /**
      * Mutation constructor.
      *
-     * @param EntryInterface[] $entries
+     * @param EndPointInterface[] $endpoints
      */
-    public function __construct(EntryInterface ...$entries)
+    public function __construct(EndPointInterface ...$endpoints)
     {
-        $this->addEntry(...$entries);
+        $this->addEndPoint(...$endpoints);
 
         parent::__construct($this->getConfig());
     }
@@ -33,25 +33,25 @@ class Mutation extends ObjectType implements MutationInterface
     {
         return [
             'name' => 'Mutation',
-            'fields' => $this->parseEntries(),
+            'fields' => $this->parseEndpoints(),
         ];
     }
 
     /**
-     * Parse the entries injected with the compiler pass
+     * Parse the endpoints injected with the compiler pass
      *
      * @return array
      */
-    protected function parseEntries(): array
+    protected function parseEndpoints(): array
     {
-        $entries = [];
+        $endpoints = [];
 
-        /** @var EntryInterface $entry */
-        foreach ($this->getEntries() as $entry)
+        /** @var EndPointInterface $endpoint */
+        foreach ($this->getEndPoints() as $endpoint)
         {
-            $entries[$entry->getName()] = $entry->toArray();
+            $endpoints[$endpoint->getName()] = $endpoint->toArray();
         }
 
-        return $entries;
+        return $endpoints;
     }
 }
